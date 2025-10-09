@@ -1,170 +1,148 @@
-// Variables and basic operators
+// Lesson 3: Recap of JavaScript Basics with New Examples
 
-// --------------------------------------
-// Section 1: Commenting our code
-// --------------------------------------
+// ------------------------------
+// Section 1: Variables, Data Types, and Operators
+// ------------------------------
 
-// single line comment = ctrl + *
-// multi-line-comment = shift + alt + a
-// shift + alt + down arrow = duplicate current line
-// ctrl + enter = next line (even if cursor is in the middle of code)
+// Scenario: An online store managing product details.
+const storeName = "Tech Haven"; // String
+const productName = "Wireless Earbuds"; // String
+let productPrice = 90; // Number
+let productQuantity = 4; // Number
+const isInStock = true; // Boolean
+const productTags = ["audio", "wireless", "accessory"]; // Array
+let discount; // Undefined
 
-/* 
-sdfgsdfg
-sdfgsdfggsd
-sdfgsdfgsdfg
- */
+// Display variable values using console.log()
+console.log("Store Name:", storeName);
+console.log("Product Name:", productName);
+console.log("Product Price:", productPrice);
+console.log("Product Quantity:", productQuantity);
+console.log("In Stock?", isInStock);
+console.log("Product Tags:", productTags);
+console.log("Discount:", discount); // Expected to be undefined
 
-// Used for testing our code and leaving comments
+// Arithmetic operations: Calculate the total cost for the available quantity.
+const totalValue = productPrice * productQuantity; // Multiplication
+console.log("Total Cost:", totalValue);
 
-// --------------------------------------
-// Section 2: console log
-// --------------------------------------
+// Compound assignment: Increase the product price by 10.
+productPrice += 10; // Equivalent to productPrice = productPrice + 10
+console.log("New Product Price:", productPrice);
 
-console.log("hello world");
+// Increment and decrement operators:
+// Increase the quantity by 1.
+productQuantity++;
+console.log("Increased Quantity:", productQuantity);
 
-// --------------------------------------
-// Section 3: Variables and Data Types
-// --------------------------------------
+// Then decrease it by 1.
+productQuantity--;
+console.log("Restored Quantity:", productQuantity);
 
-// camelCase
-// this is when we write the first word's letter in lowercase and subsequent first letters of words in upper case. it's used for naming variables in JavaScript.
+// Using the modulus operator:
+// Find the remainder when total cost is divided by 50.
+const remainder = totalValue % 50;
+console.log("Remainder of Total Cost divided by 50:", remainder);
 
-// string (text in JS)
-let exampleText = "this is my text";
+// ------------------------------
+// Section 2: Conditionals and Logical Operators
+// ------------------------------
 
-// reassigning our variable (works because we used let instead of const)
-exampleText = "now THIS is my text";
-console.log(exampleText);
+const basketSize = 450;
 
-// Integer (whole number)
-const myNum = 5;
-console.log(myNum);
+// Example: Decide promotion messages based on total cost.
+if (basketSize > 300) {
+  console.log("Congratulations! You qualify for a premium discount.");
+} else if (basketSize >= 200 && basketSize <= 300) {
+  console.log(
+    "You're close to a premium discount. Consider adding more products."
+  );
+} else {
+  console.log("Keep shopping to unlock special offers!");
+}
 
-// Float (numbrs with decimals)
-const myFloat = 6.3454;
-console.log(myFloat);
+// Logical operators: Using AND (&&) and OR (||)
+// Scenario: Show a special message if the product is in stock and either it's on sale or the quantity is high.
 
-// Boolean (true or false)
-const thisIsTrue = true;
-const thisIsFalse = false;
+discount = true;
 
-console.log(thisIsTrue);
-console.log(thisIsFalse);
+if (isInStock && (discount || productQuantity > 10)) {
+  console.log("Special offer! 15% discount!");
+} else {
+  console.log("Special offer not applied.");
+}
 
-// Array (list of values)
-const exampleArray = [5, 10, 100, 43, 243];
+// Ternary operator: Determine shipping cost based on total cost.
+let shippingCost = basketSize >= 250 ? "Free Shipping" : "$15 Shipping Fee";
+console.log("Shipping Cost:", shippingCost);
 
-console.log(exampleArray);
-// targeting an element at a specific index in the array (remember indexes start at 0!)
-console.log(exampleArray[2]);
+// Switch statement: Display messages based on the product category.
+let category = "accessory"; // Possible values: "audio", "accessory", "gadget"
+switch (category) {
+  case "audio":
+    console.log("This product is in our Audio department.");
+    break;
+  case "accessory":
+    console.log("This product is in our Accessories section.");
+    break;
+  case "gadget":
+    console.log("This product is in our Gadgets collection.");
+    break;
+  default:
+    console.log("This product belongs to a general category.");
+}
 
-// Object (hold key value pairs)
+// ------------------------------
+// Section 3: typeof Operator and Truthy/Falsey Values
+// ------------------------------
 
-const user = {
-  name: "Joe",
-  town: "Stavanger",
-  job: "Veileder",
-};
+// Using the typeof operator to check data types:
+console.log(typeof storeName); // "string"
+console.log(typeof productPrice); // "number"
+console.log(typeof isInStock); // "boolean"
+console.log(typeof productTags); // "object" (arrays are objects in JavaScript)
 
-console.log(user);
+// Demonstrating Truthy and Falsey values:
 
-// Undefined
-let undefinedExample;
-console.log(undefinedExample);
-console.log(exampleArray[5]);
+// Example with an empty string (falsey)
+// Example with a non-empty string (truthy)
+const greeting = "Welcome!";
+if (greeting) {
+  console.log("Greeting detected");
+} else {
+  console.log("No greeting detected");
+}
 
-// Null
-nullExample = null;
-console.log(nullExample);
+// Example with the number 0 (falsey)
+// Example with any other number (truthy)
+const testNumber = 0;
+if (testNumber) {
+  console.log("this number is truthy.");
+} else {
+  console.log("this number is falsey.");
+}
 
-// --------------------------------------
-// Section 4: Declaring variables - Let and Const
-// --------------------------------------
+// --------------------------------------------------
+// Section 4: Template Literals Recap
+// --------------------------------------------------
+const firstName = "Alex";
+const lastName = "Miller";
+const city = "London";
+const country = "England";
 
-let changeableMessage = "I can change";
-changeableMessage = "I've changed!";
-console.log(changeableMessage);
+// const welcomeMessage = "Welcome," + " " + firstName + " " + lastName + "! Enjoy shopping with us."
+const welcomeMessage = `Welcome, ${firstName} ${lastName} from ${city}, ${country}! We hope you enjoy shopping with us.`;
+console.log(welcomeMessage);
 
-const unchangeableMessage = "I can NOT change";
-// unchangeableMessage = "Uh oh";
-console.log(unchangeableMessage);
+const productInfo = `We currently have ${productQuantity} ${productName} in stock. The department tags for this product are: ${productTags}.`;
+console.log(productInfo);
 
-let healthPoints = 100;
-healthPoints = 50;
-console.log(healthPoints);
+// --------------------------------------------------
+// Section 5: Mixing ternary and template strings
+// --------------------------------------------------
 
-// use const if possible. use let if the variable has to change.
+const basketMessage = `You ${
+  basketSize > 250 ? "are" : "aren't"
+} eligible for free delivery`;
 
-// Note: When you declare a variable with const, you can't reassign or redeclare it in the same scope. However, if the constant holds a mutable object (like an array or an object), the properties or elements of that object can be changed.
-
-const numArray = [1, 2, 3];
-numArray[1] = 4;
-console.log(numArray);
-
-// --------------------------------------
-// Section 5: Basic Operators
-// --------------------------------------
-
-// Operators perform calculations or comparisons
-
-let num1 = 3;
-let num2 = 2;
-
-console.log(num1 + num2); // addition
-console.log(num1 - num2); // subtraction
-console.log(num1 * num2); // multiplication
-console.log(num1 / num2); // division
-console.log(num1 % num2); // modulus (remainders)
-
-// Using the + operator with strings to concatenate them
-
-let firstName = "Jane";
-let lastName = "Doe";
-
-let fullName = firstName + " " + lastName;
-
-console.log(fullName);
-
-// incrementing and decrementing
-let counter = 0;
-
-// DRY - Don't repeat yourself
-counter++;
-counter++;
-counter++;
-counter--;
-console.log(counter);
-
-// The following two lines do the same thing, use the 2nd one!
-// counter = counter + 50;
-counter += 3;
-
-console.log(counter + 50);
-console.log(counter);
-
-counter -= 100;
-console.log(counter);
-
-// Comparison operators - return true or false
-
-console.log(counter == -95);
-console.log(99 == 100);
-
-// Comparison (doesnt take into account data types)
-console.log("100" == 100);
-
-// Strict comparison (does take into account data types)
-console.log("100" === 100);
-
-// Greater than
-console.log(5 > 10);
-
-// Less than
-console.log(5 < 10);
-
-// Greater than or equal to
-console.log(10 >= 10);
-
-// Less than or equal to
-console.log(10 <= 10);
+console.log(basketMessage);
