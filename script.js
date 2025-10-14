@@ -106,6 +106,12 @@ console.log(myNum.toString()); // turns a number data type into a string
 console.log(myNum.toExponential()); // returns a string as exponential notation
 
 // --------------------------------------
+// Section 3.1: Converting a Number into a String
+// --------------------------------------
+
+console.log(myNum.toString()); // turns a number data type into a string
+
+// --------------------------------------
 // Section 4: Chaining Methods Together
 // --------------------------------------
 
