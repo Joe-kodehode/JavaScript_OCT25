@@ -42,7 +42,7 @@ console.log(exampleText);
 const myNum = 5;
 console.log(myNum);
 
-// Float (numbrs with decimals)
+// Float (numbers with decimals)
 const myFloat = 6.3454;
 console.log(myFloat);
 

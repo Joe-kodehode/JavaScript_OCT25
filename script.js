@@ -1,177 +1,128 @@
-// Lesson 4: Functions in JavaScript
+// Lesson 5: JavaScript Methods (Strings, Arrays, and Numbers)
 
-// A function is a block of code designed to do one specific task. It lets you write code once and reuse it, keeping your program clean and organized. However, the function won't do anything until you call it.
+// A method in JavaScript is a built-in function that you use with a specific type of data, like strings, numbers or arrays. It lets you do something with that data—like change it, check it, copy or access part of it.
 
-// ---------------------------------------------------
-// Section 1: Function Declarations (aka function statements) and Hoisting
-// ---------------------------------------------------
+// --------------------------------------
+// Section 1: String Methods
+// --------------------------------------
 
-sayHello();
+const text = "    Hello, JavaScript World World!   ";
 
-// This function prints a simple greeting.
-function sayHello() {
-  console.log("Hello world!");
-}
+console.log(text.trim()); // removes whitespace from both ends of the string
+console.log(text.trim().toUpperCase()); // converts the entire string to uppercase
+console.log(text.trim().toLowerCase()); // converts the entire string to lowercase
+console.log(text.trim().indexOf("JavaScript")); // returns the starting index of "JavaScript" in the string
+console.log(text.trim().slice(0, 5)); // extracts characters between starting index and an ending index parameters.  Doesn't alter the original string.
+console.log(text.replace("World", "Universe")); // replaces the first instance of the word "World" with "Universe"
+console.log(text.replaceAll("World", "Universe")); // replaces all instances of the word "World" with "Universe"
+console.log(text.trim().charCodeAt(0)); // returns the Unicode value of the character at the specified index
+console.log(text.length); // returns the length (amount of characters) in the sting. Starts from 1, not 0 as it's not about the index
+console.log(text.repeat(3)); // repeats the string 3 times
 
-sayHello();
-// Calling the function before its declaration demonstrates hoisting.
+// --------------------------------------
+// Section 1.1: Converting a String to an Array
+// --------------------------------------
 
-// ---------------------------------------------------
-// Section 2: Arrow Functions (introduced in ES6, great for short, inline functions)
-// ---------------------------------------------------
+console.log(text.trim().split(" ")); // splits the string into an array of substrings by spaces
 
-// An arrow function expression. Can't use hoisting (must be called after being created).
-const arrowFunctionExample = () => {
-  console.log("Hello from the arrow function");
-};
+// --------------------------------------
+// Section 1.2: Converting a String to a Number
+// --------------------------------------
 
-arrowFunctionExample();
+let numericString = "123.45xyz";
 
-// ---------------------------------------------------
-// Section 3: Return Statements and Scope
-// ---------------------------------------------------
+console.log(Number(numericString)); // converts entire string into a number; returns NaN (not a number) if any part is invalid
 
-function one() {
-  console.log("This function logs a message. It does not return any data");
-}
+console.log(parseInt(numericString)); // parses as an integer until an invalid character (decimal or alphabetical character)
 
-one();
+console.log(parseFloat(numericString)); // parses as a float until an invalid character (alphabetical character)
 
-function two() {
-  const myMessage = "This function returns data";
-  return myMessage;
-}
+// --------------------------------------
+// Section 2: Array Methods
+// --------------------------------------
 
-const returnedMessage = two();
+const colors = ["Red", "Green", "Blue"];
 
-// You can only return once from a function, then we exit the function.
-// Returned data gets sent to the function call.
-// We can store the returned data in a new variable
+console.log(colors.length); // returns the number of elements in the array
 
-// ---------------------------------------------------
-// Section 4: Functions with Parameters
-// ---------------------------------------------------
+colors.push("Yellow"); // adds a new element to the end of the array
+console.log(colors);
 
-// Example 1
-// This function is 'hard coded' to always return 3 + 4.
-function add() {
-  return 3 + 4;
-}
+colors.pop(); // remove the last element from the end of the array
+console.log(colors);
 
-console.log(add());
+colors.unshift("Purple"); // adds a new element to the beginning of the array
+console.log(colors);
 
-// Example 2
-// This function is not 'hard coded', it is dynamic - we can reuse it with different values in the parameters.
-function minus(num1, num2) {
-  return num1 - num2;
-}
+colors.shift(); // removes an element from the beginning of the array
+console.log(colors);
 
-console.log(minus(3, 4));
-console.log(minus(50, 34));
+console.log(colors.includes("Green")); // checks if "Green" is included in the colors array, comes back true
+console.log(colors.includes("Violet")); // checks if "Violet" is included in the colors array, comes back false
 
-// Example 3
-// A greeter function that uses parameters and template literal
+const newColors = colors.toSpliced(0, 1, "Pink"); //Returns a new array with element(s) spliced out and new element(s) spliced in
+console.log(newColors);
 
-const greeter = (name, time) => {
-  return `Good ${time} ${name}`;
-};
+colors.splice(0, 1, "Pink"); // The same as toSpliced BUT doesn't return a new array, it affects the original array.
+console.log(colors);
 
-console.log(greeter("Joe", "evening"));
-console.log(greeter("Henry", "afternoon"));
+let unsortedNumArr = [3, 1, 4, 1, 5, 9, 3];
 
-// Implicit return lets us remove the {} and 'return' keyword. Only works with a simple one-liner that goes directly into a return.
-const multiplier = (num1, num2) => num1 * num2;
+let sortedNumArr = unsortedNumArr.toSorted(); // Returns a NEW array that has been sorted
+console.log(sortedNumArr);
 
-console.log(multiplier(5, 10));
-console.log(multiplier(7, 3));
+unsortedNumArr.sort(); // Sorts the original array
+console.log(unsortedNumArr);
 
-// ---------------------------------------------------
-// Section 6: Calculator Function Using Switch Statement
-// ---------------------------------------------------
+const reversedArr = sortedNumArr.toReversed(); // Retruns a NEW array that has been reversed.
+console.log(reversedArr);
 
-function calculator(num1, num2, operator) {
-  switch (operator) {
-    case "+":
-      return num1 + num2;
-    case "-":
-      return num1 - num2;
-    case "*":
-      return num1 * num2;
-    case "/":
-      if (num1 === 0 || num2 === 0) {
-        return "You shouldnt divide with 0!";
-      }
-      return num1 / num2;
-    default:
-      return "Invalid operator";
-  }
-}
+sortedNumArr.reverse(); // Reverses the original array
+console.log(sortedNumArr);
 
-console.log(calculator(5, 7, "+"));
-console.log(calculator(50, 3, "*"));
-console.log(calculator(104, 1, "-"));
-console.log(calculator(10, 2, "/"));
-console.log(calculator(10, 2, "$"));
-console.log(calculator(10, 0, "/"));
+console.log(sortedNumArr.at(5)); // Returns the element at the given index
+console.log(sortedNumArr[5]); // This does the same but it won't work going backwards with -
 
-// ---------------------------------------------------
-// Section 7: Updating a Global Variable via a Function
-// ---------------------------------------------------
+console.log(sortedNumArr.at(-5)); // Returns the element at the given index, from the end to the start
 
-let hp = 100;
+// --------------------------------------
+// Section 2.1: Converting an Array into a String
+// --------------------------------------
 
-// arrow function to update global hp variable
-const updateHp = (change, value) => {
-  if (change === "up") {
-    hp += value;
-    if (hp > 200) {
-      hp = 200;
-    }
-  } else if (change === "down") {
-    hp -= value;
-    if (hp <= 0) {
-      console.log("Game over!");
-      hp = 100;
-    }
-  }
-};
+console.log(colors);
 
-console.log(hp);
-updateHp("up", 50);
-console.log(hp);
-updateHp("down", 20);
-console.log(hp);
-updateHp("down", 300);
-console.log(hp);
+console.log(colors.join(" ")); // Joins array elements into a string seperated by the string in the parameter. (in this case a whitespace " ")
 
-// ---------------------------------------------------
-// Section 8: Using Template Literals and Ternary Operator in a Function
-// ---------------------------------------------------
+// --------------------------------------
+// Section 3: Number Methods
+// --------------------------------------
 
-const fruits = ["Banana", "Apple", "Pear", "Kiwi"];
-const games = [
-  "Silksong",
-  "Hello Kitty Island Adventure",
-  "Animal Crossing",
-  "Gears of War",
-];
+const myNum = 3.39457934;
 
-// Make a function which checks if a fruit is in the fruits array and console logs either "The array does include the fruit" or "The array doesn't include the fruit"
+console.log(myNum.toFixed(2)); // rounds decimals to the given number. Also turns it into a string data type!
 
-// const checkItem = (fruit) => {
-//   if (fruits.includes(fruit)) {
-//     return `The array does include ${fruit}`;
-//   } else {
-//     return `The array doesn't include ${fruit}`;
-//   }
-// };
+console.log(myNum.toString()); // turns a number data type into a string
 
-// function with a ternary to determine if the fruit is in the array
-const checkItem = (item, array) =>
-  `The array ${array.includes(item) ? "does" : "doesn't"} include ${item}`;
+console.log(myNum.toExponential()); // returns a string as exponential notation
 
-console.log(checkItem("Apple", fruits));
-console.log(checkItem("Grape", fruits));
-console.log(checkItem("Kiwi", fruits));
-console.log(checkItem("Animal Crossing", games));
-console.log(checkItem("Silksong", games));
+// --------------------------------------
+// Section 4: Chaining Methods Together
+// --------------------------------------
+
+// Example 1: Chaining String Methods
+const rawString = "   JavaScript is fun!   ";
+const processedString = rawString
+  .trim()
+  .replace("fun", "awesome")
+  .toUpperCase();
+console.log(processedString); // "JAVASCRIPT IS AWESOME!"
+
+// Example 2: Chaining Array Methods
+const words = ["hello", "world"];
+const messageFromArray = words.join(" ").toUpperCase();
+console.log(messageFromArray); // "HELLO WORLD"
+
+// Example 3: Chaining with a Number (after converting to string)
+// Take a number, round it to 2 decimals, convert to a string, and repeat it twice
+const chainedNumber = myNum.toFixed(2).toString().repeat(2);
+console.log(chainedNumber); // e.g., "3.143.14"
