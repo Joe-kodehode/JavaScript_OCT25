@@ -1,0 +1,19 @@
+h1 {
+  font-size: 36px;
+}
+
+.pretty-paragraph {
+  color: blueviolet;
+  font-size: 26px;
+  font-style: italic;
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+}
+
+.darkmode {
+  background-color: aquamarine;
+}
